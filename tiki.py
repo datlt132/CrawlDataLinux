@@ -22,3 +22,5 @@ if __name__ == '__main__':
     element = browser.find_element_by_tag_name("body")
     jsondata = json.loads(element.text)
     print(jsondata)
+
+    browser.close()
