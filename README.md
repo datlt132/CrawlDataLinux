@@ -1,8 +1,8 @@
 # CrawlData
-##First: install package for database connect
+## First: install package for database connect
 pip install mysql-connector-python
-##Second: install requests for http request
+## Second: install requests for http request
 python -m pip install requests
-##Third: install json lib
+## Third: install json lib
 pip install simplejson
-##Require: chrome version 96 to use chromedriver
+## Require: chrome version 96 to use chromedriver
