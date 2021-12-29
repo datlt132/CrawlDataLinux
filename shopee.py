@@ -6,4 +6,7 @@ response = requests.get('https://shopee.vn/api/v4/search/search_items?by=relevan
 data = response.text
 jsondata = json.loads(data)
 
-print(jsondata)
+for index, item in enumerate(jsondata['items']):
+    print(index,
+    jsondata['items'][index]["item_basic"]["item_rating"]["rating_star"])
+# print(jsondata['items'][24]["item_basic"]["name"])
