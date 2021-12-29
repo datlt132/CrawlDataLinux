@@ -15,30 +15,33 @@ mycursor = cnx.cursor()
 
 def init_database():
     try:
-        mycursor.execute("CREATE TABLE IF NOT EXISTS product( itemid INT NOT NULL AUTO_INCREMENT,"
-                         "name VARCHAR(500) NULL,"
-                         "shop_location VARCHAR(500) NULL,"
-                         "PRIMARY KEY (itemid))")
+        mycursor.execute("CREATE TABLE IF NOT EXISTS product( productid INT NOT NULL AUTO_INCREMENT,"
+                         "itemid VARCHAR(500) NOT NULL,"
+                         "name VARCHAR(500),"
+                         "shop_location VARCHAR(500),"
+                         "PRIMARY KEY (productid))"
+                         "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     except Exception as err:
         print(Exception, err)
 
     try:
         mycursor.execute("CREATE TABLE IF NOT EXISTS price( priceid INT NOT NULL AUTO_INCREMENT,"
-                         "itemid INT NOT NULL,"
-                         "price INT,"
-                         "rating_star INT,"
+                         "itemid VARCHAR(500) NOT NULL,"
+                         "price VARCHAR(500),"
+                         "rating_star FLOAT,"
                          "ctime TIMESTAMP NOT NULL,"
-                         "PRIMARY KEY (priceid))")
+                         "PRIMARY KEY (priceid))"
+                         "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     except Exception as err:
         print(Exception, err)
 
     cnx.commit()
 
 
-def insert_into_product(name, shop_location):
+def insert_into_product(itemid, name, shop_location):
     try:
-        sql = "INSERT INTO product (name, shop_location) VALUES (%s, %s)"
-        val = (name, shop_location)
+        sql = "INSERT INTO product (itemid, name, shop_location) VALUES (%s ,%s, %s)"
+        val = (itemid, name, shop_location)
         mycursor.execute(sql, val)
         cnx.commit()
     except Exception as err:

@@ -1,5 +1,6 @@
 import json
 from time import sleep
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -21,6 +22,11 @@ if __name__ == '__main__':
     sleep(1)
     element = browser.find_element_by_tag_name("body")
     jsondata = json.loads(element.text)
+    jsonobject = json.dumps(jsondata)
+    f = open("tiki.json", "w+")
+    f.write(jsonobject)
+    f.close()
+
     print(jsondata)
 
     browser.close()

@@ -1,5 +1,8 @@
-import requests
 import json
+
+import requests
+
+from lib.mySqlConfig import insert_into_product, insert_into_price
 
 response = requests.get('https://shopee.vn/api/v4/search/search_items?by=relevancy&keyword=may%20tinh&limit=60&newest'
                         '=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2')
@@ -7,6 +10,12 @@ data = response.text
 jsondata = json.loads(data)
 
 for index, item in enumerate(jsondata['items']):
-    print(index,
-    jsondata['items'][index]["item_basic"]["item_rating"]["rating_star"])
-# print(jsondata['items'][24]["item_basic"]["name"])
+    # insert into product table
+    insert_into_product(jsondata['items'][index]["item_basic"]["itemid"],
+                        jsondata['items'][index]["item_basic"]["name"],
+                        jsondata['items'][index]["item_basic"]["shop_location"])
+
+    # insert into price table
+    insert_into_price(jsondata['items'][index]["item_basic"]["itemid"],
+                      jsondata['items'][index]["item_basic"]["price"],
+                      jsondata['items'][index]["item_basic"]["item_rating"]["rating_star"])
