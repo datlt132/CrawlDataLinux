@@ -12,13 +12,13 @@ SCROLL_PAUSE_TIME = 0.5
 def set_browser():
     options = Options()
     options.add_argument("--disable-notifications")
-    browser = webdriver.Chrome(executable_path="./chromedriver_win32/chromedriver", chrome_options=options)
+    browser = webdriver.Chrome(executable_path="../chromedriver_win32/chromedriver", chrome_options=options)
     return browser
 
 
 if __name__ == '__main__':
     agg = 2;
-    while agg < 10:
+    while agg < 100:
         browser = set_browser()
         browser.get(f"https://tiki.vn/api/v2/products?limit=48&include=advertisement&aggregations={agg}&"
                     "trackity_id=5d52ce02-5821-bcaf-7a2a-064cdf911585&q=laptop%20asus"

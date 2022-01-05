@@ -81,24 +81,38 @@ def init_database():
     cnx.commit()
 
 
-def insert_into_product(ecom, itemid, name, shopid, catid):
+def insert_into_product(ecom, itemid, name, shopid):
     try:
-        sql = f'INSERT INTO `ecom`.`{ecom}_product` (`itemid`, `name`, `shopid`, `catid`) ' \
-              f'VALUES ("{itemid}" ,"{name}", "{shopid}", "{catid}")'
-        # val = (itemid, name, shopid, catid)
-        # mycursor.execute(sql, val)
-        # cnx.commit()
-        return sql
+        sql = f'INSERT INTO {ecom}_product (itemid, name, shopid) '\
+            f'VALUES ("{itemid}" ,"{name}", "{shopid}")'
+        mycursor.execute(sql)
+        cnx.commit()
     except Exception as err:
         print(Exception, err)
 
 
 def insert_into_price(ecom, itemid, price, rating_star):
     try:
+        sql = f'INSERT INTO {ecom}_price (itemid, price, rating_star) '\
+              f'VALUES ("{itemid}" ,"{price}", "{rating_star}")'
+        mycursor.execute(sql)
+        cnx.commit()
+    except Exception as err:
+        print(Exception, err)
+
+
+def getsql_insert_into_product(ecom, itemid, name, shopid, catid):
+    try:
+        sql = f'INSERT INTO `ecom`.`{ecom}_product` (`itemid`, `name`, `shopid`, `catid`) ' \
+              f'VALUES ("{itemid}" ,"{name}", "{shopid}", "{catid}")'
+        return sql
+    except Exception as err:
+        print(Exception, err)
+
+
+def getsql_insert_into_price(ecom, itemid, price, rating_star):
+    try:
         sql = f'INSERT INTO `ecom`.`{ecom}_price` (`itemid`, `price`, `rating_star`) VALUES ("{itemid}", "{price}", "{rating_star}")'
-        # val = (itemid, price, rating_star)
-        # mycursor.execute(sql, val)
-        # cnx.commit()
         return sql
     except Exception as err:
         print(Exception, err)

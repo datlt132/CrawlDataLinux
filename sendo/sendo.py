@@ -12,7 +12,7 @@ SCROLL_PAUSE_TIME = 0.5
 def set_browser():
     options = Options()
     options.add_argument("--disable-notifications")
-    browser = webdriver.Chrome(executable_path="./chromedriver_win32/chromedriver", chrome_options=options)
+    browser = webdriver.Chrome(executable_path="../chromedriver_win32/chromedriver", chrome_options=options)
     return browser
 
 
@@ -29,13 +29,13 @@ if __name__ == '__main__':
 
     for index, item in enumerate(jsondata['products']):
         # insert into product table
-        insert_into_product("sendo", jsondata['products'][index]["skuId"],
-                            jsondata['products'][index]["name"],
-                            jsondata['products'][index]["sellerId"])
+        insert_into_product("sendo", jsondata['products'][index]['skuId'],
+                            jsondata['products'][index]['name'],
+                            jsondata['products'][index]['sellerId'])
 
         # insert into price table
-        insert_into_price("sendo", jsondata['products'][index]["skuId"],
-                          jsondata['products'][index]["salePrice"],
-                          jsondata['products'][index]["score"])
+        insert_into_price("sendo", jsondata['products'][index]['skuId'],
+                          jsondata['products'][index]['salePrice'],
+                          jsondata['products'][index]['score'])
 
     browser.close()
