@@ -18,7 +18,8 @@ def init_database():
         mycursor.execute("CREATE TABLE IF NOT EXISTS shopee_product( productid INT NOT NULL AUTO_INCREMENT,"
                          "itemid VARCHAR(500) NOT NULL UNIQUE,"
                          "name VARCHAR(500),"
-                         "shop_location VARCHAR(500),"
+                         "shopid VARCHAR(500),"
+                         "catid VARCHAR(500),"
                          "PRIMARY KEY (productid))"
                          "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     except Exception as err:
@@ -39,7 +40,7 @@ def init_database():
         mycursor.execute("CREATE TABLE IF NOT EXISTS tiki_product( productid INT NOT NULL AUTO_INCREMENT,"
                          "itemid VARCHAR(500) NOT NULL UNIQUE,"
                          "name VARCHAR(500),"
-                         "shop_location VARCHAR(500),"
+                         "shopid VARCHAR(500),"
                          "PRIMARY KEY (productid))"
                          "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     except Exception as err:
@@ -60,7 +61,7 @@ def init_database():
         mycursor.execute("CREATE TABLE IF NOT EXISTS sendo_product( productid INT NOT NULL AUTO_INCREMENT,"
                          "itemid VARCHAR(500) NOT NULL UNIQUE,"
                          "name VARCHAR(500),"
-                         "shop_location VARCHAR(500),"
+                         "shopid VARCHAR(500),"
                          "PRIMARY KEY (productid))"
                          "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     except Exception as err:
@@ -80,22 +81,25 @@ def init_database():
     cnx.commit()
 
 
-def insert_into_product(ecom, itemid, name, shop_location):
+def insert_into_product(ecom, itemid, name, shopid, catid):
     try:
-        sql = f"INSERT INTO {ecom}_product (itemid, name, shop_location) VALUES (%s ,%s, %s)"
-        val = (itemid, name, shop_location)
-        mycursor.execute(sql, val)
-        cnx.commit()
+        sql = f'INSERT INTO `ecom`.`{ecom}_product` (`itemid`, `name`, `shopid`, `catid`) ' \
+              f'VALUES ("{itemid}" ,"{name}", "{shopid}", "{catid}")'
+        # val = (itemid, name, shopid, catid)
+        # mycursor.execute(sql, val)
+        # cnx.commit()
+        return sql
     except Exception as err:
         print(Exception, err)
 
 
 def insert_into_price(ecom, itemid, price, rating_star):
     try:
-        sql = f"INSERT INTO {ecom}_price (itemid, price, rating_star) VALUES (%s, %s, %s)"
-        val = (itemid, price, rating_star)
-        mycursor.execute(sql, val)
-        cnx.commit()
+        sql = f'INSERT INTO `ecom`.`{ecom}_price` (`itemid`, `price`, `rating_star`) VALUES ("{itemid}", "{price}", "{rating_star}")'
+        # val = (itemid, price, rating_star)
+        # mycursor.execute(sql, val)
+        # cnx.commit()
+        return sql
     except Exception as err:
         print(Exception, err)
 
