@@ -30,7 +30,7 @@ def init_database():
                          "itemid VARCHAR(500) NOT NULL,"
                          "price VARCHAR(500),"
                          "rating_star FLOAT,"
-                         "ctime TIMESTAMP NOT NULL,"
+                         "ctime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
                          "PRIMARY KEY (priceid))"
                          "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     except Exception as err:
@@ -51,7 +51,7 @@ def init_database():
                          "itemid VARCHAR(500) NOT NULL,"
                          "price VARCHAR(500),"
                          "rating_star FLOAT,"
-                         "ctime TIMESTAMP NOT NULL,"
+                         "ctime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
                          "PRIMARY KEY (priceid))"
                          "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     except Exception as err:
@@ -72,7 +72,7 @@ def init_database():
                          "itemid VARCHAR(500) NOT NULL,"
                          "price VARCHAR(500),"
                          "rating_star FLOAT,"
-                         "ctime TIMESTAMP NOT NULL,"
+                         "ctime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
                          "PRIMARY KEY (priceid))"
                          "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     except Exception as err:
@@ -114,6 +114,16 @@ def getsql_insert_into_price(ecom, itemid, price, rating_star):
     try:
         sql = f'INSERT INTO `ecom`.`{ecom}_price` (`itemid`, `price`, `rating_star`) VALUES ("{itemid}", "{price}", "{rating_star}")'
         return sql
+    except Exception as err:
+        print(Exception, err)
+
+
+def execute_sql_statement_from_file(filepath):
+    try:
+        fp = open(filepath, "r", encoding="utf-8")
+        sql = fp.read()
+        mycursor.execute(sql, multi=True)
+        cnx.commit()
     except Exception as err:
         print(Exception, err)
 
