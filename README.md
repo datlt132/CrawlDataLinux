@@ -5,4 +5,4 @@ pip install mysql-connector-python
 python -m pip install requests
 ## Third: install json lib
 pip install simplejson
-## Require: chrome version 96 to use chromedriver
+## Require: chrome version 97 to use chromedriver
