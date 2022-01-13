@@ -15,7 +15,7 @@ def crawl_tiki():
         page = 1;
         maxpage = 10;
 
-        while page < 2:
+        while page < maxpage:
             browser = set_browser()
             browser.get(f"https://tiki.vn/api/personalish/v1/blocks/listings"
                         f"?limit=48&aggregations=2&category={cat_id}&page={page}")
