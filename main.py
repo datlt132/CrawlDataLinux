@@ -7,14 +7,15 @@ from lib.mySqlConfig import execute_sql_statement_from_file
 
 if __name__ == '__main__':
     init_database()
-    try:
-        crawl_tiki()
-    except Exception as err:
-        print(Exception, err)
-    # execute_sql_statement_from_file("./data/tiki/price.sql")
+    while 1:
+        # try:
+        #     crawl_tiki()
+        # except Exception as err:
+        #     print(Exception, err)
+        # execute_sql_statement_from_file("./data/tiki/price.sql")
 
-    try:
-        crawl_shopee()
-    except Exception as err:
-        print(Exception, err)
-    sleep(8*60*60)
+        try:
+            crawl_shopee()
+        except Exception as err:
+            print(Exception, err)
+        sleep(3*60*60)

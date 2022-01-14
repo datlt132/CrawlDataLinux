@@ -1,5 +1,5 @@
 import json
-
+from datetime import date
 import requests
 
 from shopeecrawl.getCatIdsShopee import get_category_ids
@@ -8,8 +8,10 @@ from lib.mySqlConfig import getsql_insert_into_product, getsql_insert_into_price
 
 def crawl_shopee():
     list_cat_ids = get_category_ids()
-    f_product = open("./data/shopee/product.sql", "a+", encoding="utf-8")
-    f_price = open("./data/shopee/price.sql", "a+", encoding="utf-8")
+    today = date.today();
+    day = today.strftime("%b-%d-%Y")
+    f_product = open(f"./data/shopee/product-{day}.sql", "a+", encoding="utf-8")
+    f_price = open(f"./data/shopee/price-{day}.sql", "a+", encoding="utf-8")
     for cat_id in list_cat_ids:
         newest = 0
         while newest < 8000:

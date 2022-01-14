@@ -5,7 +5,8 @@ config = {
     'password': '123456',
     'host': '127.0.0.1',
     'database': 'ecom',
-    'raise_on_warnings': True
+    'raise_on_warnings': True,
+    'auth_plugin':'mysql_native_password'
 }
 
 cnx = mysql.connector.connect(**config)

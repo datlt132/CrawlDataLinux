@@ -1,4 +1,5 @@
 import json
+from datetime import date
 from time import sleep
 
 import requests
@@ -9,8 +10,10 @@ from tiki.getCatIdsTiki import get_category_id, set_browser
 
 def crawl_tiki():
     list_cat_ids = get_category_id()
-    f_product = open("./data/tiki/product.sql", "a+", encoding="utf-8")
-    f_price = open("./data/tiki/price.sql", "a+", encoding="utf-8")
+    today = date.today();
+    day = today.strftime("%b-%d-%Y")
+    f_product = open(f"./data/tiki/product-{day}.sql", "a+", encoding="utf-8")
+    f_price = open(f"./data/tiki/price-{day}.sql", "a+", encoding="utf-8")
     for cat_id in list_cat_ids:
         page = 1;
         maxpage = 10;
