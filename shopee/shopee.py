@@ -2,8 +2,8 @@ import json
 from datetime import date
 import requests
 
-from shopeecrawl.getCatIdsShopee import get_category_ids
-from lib.mySqlConfig import getsql_insert_into_product, getsql_insert_into_price
+from shopee.getCatIdsShopee import get_category_ids
+from lib.createFileSql import getsql_insert_into_product, getsql_insert_into_price
 
 
 def crawl_shopee():
