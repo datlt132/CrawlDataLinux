@@ -4,7 +4,7 @@ from time import sleep
 
 import requests
 
-from lib.mySqlConfig import getsql_insert_into_price, getsql_insert_into_product
+from lib.createFileSql import getsql_insert_into_price, getsql_insert_into_product
 from tiki.getCatIdsTiki import get_category_id, set_browser
 
 
