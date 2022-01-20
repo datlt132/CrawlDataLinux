@@ -9,3 +9,5 @@
 ### 1. pip3 install selenium
 ### 2. pip install simplejson
 ### 3. pip3 install requests
+## After install successfully necessary library:
+### python3 main.py to run application
