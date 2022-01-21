@@ -4,10 +4,10 @@ from tiki.tiki import crawl_tiki
 
 if __name__ == '__main__':
     while 1:
-        # try:
-        #     crawl_tiki()
-        # except Exception as err:
-        #     print(Exception, err)
+        try:
+            crawl_tiki()
+        except Exception as err:
+            print(Exception, err)
 
         try:
             crawl_shopee()
